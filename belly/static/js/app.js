@@ -1,5 +1,5 @@
 //==========================================
-// function dyanmically pulls the information 
+// function pulls the information 
 // about the sample person for display in the html panel
 
 function buildMetadata(sample) {
@@ -24,7 +24,7 @@ function buildMetadata(sample) {
 } // closes the function buildMetadata(sample)
 
 //==========================================
-// function dyanmically pulls the information 
+// function pulls the information 
 // about biome contained in the sample 
 // for display in the bubble and pie chart
 
@@ -34,7 +34,7 @@ function buildCharts(sample) {
   var defaultURL = `/samples/${sample}`;
   d3.json(defaultURL).then((data) =>{
 
-    var labels=data.otu_labels;
+    var otu_labels=data.otu_labels;
     var code=data.otu_ids;
     var count =data.sample_values;
   
@@ -51,7 +51,7 @@ function buildCharts(sample) {
     var bubbledata=[{
       x:code,
       y:count,
-      text: labels,
+      text: otu_labels,
       mode: "markers",
       marker: {
       size:count,
@@ -66,13 +66,15 @@ function buildCharts(sample) {
       var pielayout = {
       title: "Belly Button Pie"}
 
+      //HELP: Want the description words and code number to display on hover but not pie
       var piedata = [{
         "labels": code.slice(0,10),
         "values": count.slice(0,10),
-        // indexLabelPlacement: "outside",
-       "text": labels.slice(0,10),
+        indexLabelPlacement: "outside",
+          // text: otu_labels,
+          // namelength:-1,
         "type": "pie",
-      }];// closes funciton: piedata
+      }];// closes funciton: piedata"
 
 Plotly.newPlot("bubble",bubbledata,bubblelayout);
 Plotly.newPlot("pie",piedata,pielayout);
