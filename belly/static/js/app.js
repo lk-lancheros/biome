@@ -17,7 +17,7 @@ function buildMetadata(sample) {
   // append each metadata key and values 
   Object.entries(data).forEach(([key, value]) => {
   selector.append("p")
-  .text(`${key}:${value}`);
+  .text(`${key}: ${value}`);
 
   }); // closes the function for appending each key and value
 }); // closes the function for the metadata fetch
@@ -41,10 +41,11 @@ function buildCharts(sample) {
     //================================
     // bubble chart: create the layout
     var bubblelayout = {
-    title: "Belly Button Bubble",
-    margin: {t:0},
+    title: "Microbes Compared: (Displays All)",
+    // margin: {t:0},
     hovermode:"closest",
-    xaxis: {title:"OTU ID"},
+    xaxis: {title:"OTU ID (Microbe identification number)"},
+    yaxis: {title:"Counts of microbe"},
     }; // closes funciton: bubblelayout
     
     // bubble chart: organize the data
@@ -64,15 +65,17 @@ function buildCharts(sample) {
     //================================
     // pie chart: create the layout
       var pielayout = {
-      title: "Belly Button Pie"}
+      // margin: {t:0},
+      title: "Microbe counts vary? (Displays up to 10)",
+      indexLabelPlacement: "outside",
+      "layout": "auto",
+      text: otu_labels}
+        // namelength:-1,}
 
       //HELP: Want the description words and code number to display on hover but not pie
       var piedata = [{
         "labels": code.slice(0,10),
         "values": count.slice(0,10),
-        indexLabelPlacement: "outside",
-          // text: otu_labels,
-          // namelength:-1,
         "type": "pie",
       }];// closes funciton: piedata"
 

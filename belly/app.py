@@ -67,13 +67,13 @@ def sample_metadata(sample):
     # Create a dictionary entry for each row of metadata information
     sample_metadata = {}
     for result in results:
-        sample_metadata["sample"] = result[0]
+        sample_metadata["SAMPLE"] = result[0]
         sample_metadata["ETHNICITY"] = result[1]
         sample_metadata["GENDER"] = result[2]
         sample_metadata["AGE"] = result[3]
         sample_metadata["LOCATION"] = result[4]
-        sample_metadata["BBTYPE"] = result[5]
-        sample_metadata["WFREQ"] = result[6]
+        sample_metadata["BELLY_BUTTON_TYPE"] = result[5]
+        sample_metadata["WASH_FREQ"] = result[6]
 
     print(sample_metadata)
     return jsonify(sample_metadata)
