@@ -74,11 +74,11 @@ function buildCharts(sample) {
       var piedata = [{
         "labels": code.slice(0,10),
         "values": count.slice(0,10),
-        textinfo: otu_labels.slice(0,10),
-        // hoverinfo='labels+percent+textinfo', 
+        "text": otu_labels,
+        "textinfo": 'percent',
+        "hoverinfo":("text"+"labels"+"values"+"percent"),
         "type": "pie",
         }];// closes funciton: piedata"
-
 Plotly.newPlot("bubble",bubbledata,bubblelayout);
 Plotly.newPlot("pie",piedata,pielayout);
   });// closes funciton: fetch
