@@ -68,16 +68,16 @@ function buildCharts(sample) {
       // margin: {t:0},
       title: "Microbe counts vary? (Displays up to 10)",
       indexLabelPlacement: "outside",
-      "layout": "auto",
-      text: otu_labels}
-        // namelength:-1,}
+      "layout": "auto"}
 
       //HELP: Want the description words and code number to display on hover but not pie
       var piedata = [{
         "labels": code.slice(0,10),
         "values": count.slice(0,10),
+        textinfo: otu_labels.slice(0,10),
+        // hoverinfo='labels+percent+textinfo', 
         "type": "pie",
-      }];// closes funciton: piedata"
+        }];// closes funciton: piedata"
 
 Plotly.newPlot("bubble",bubbledata,bubblelayout);
 Plotly.newPlot("pie",piedata,pielayout);
