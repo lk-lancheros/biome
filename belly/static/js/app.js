@@ -37,6 +37,18 @@ function buildCharts(sample) {
     var otu_labels=data.otu_labels;
     var code=data.otu_ids;
     var count =data.sample_values;
+    var array = []
+    for (var d = 0; d < code.length; d++) {
+    array.push({'count': count[d], 
+    'code': code[d], 'otu_labels': otu_labels[d]}
+    )};
+    
+    var s_array=array.sort(function(a, b) {
+      return (b.count) - (a.count);
+      
+    });
+    console.log(s_array);
+    s_array=s_array.slice(0,10);
   
     //================================
     // bubble chart: create the layout
@@ -72,9 +84,9 @@ function buildCharts(sample) {
 
       //HELP: Want the description words and code number to display on hover but not pie
       var piedata = [{
-        "labels": code.slice(0,10),
-        "values": count.slice(0,10),
-        "text": otu_labels,
+        "labels": s_array.map(row => row.code),
+        "values": s_array.map(row => row.count),
+        "text": s_array.map(row => row.otu_labels),
         "textinfo": 'percent',
         "hoverinfo":("text"+"labels"+"values"+"percent"),
         "type": "pie",
