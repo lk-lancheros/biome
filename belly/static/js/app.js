@@ -54,7 +54,7 @@ function buildCharts(sample) {
     // bubble chart: create the layout
     var bubblelayout = {
     title: "Microbes Compared: (Displays All)",
-    // margin: {t:0},
+    margin: {r:0},
     hovermode:"closest",
     xaxis: {title:"OTU ID (Microbe identification number)"},
     yaxis: {title:"Counts of microbe"},
@@ -77,22 +77,23 @@ function buildCharts(sample) {
     //================================
     // pie chart: create the layout
       var pielayout = {
-      // margin: {t:0},
       title: "Microbe counts vary? (Displays up to 10)",
       indexLabelPlacement: "outside",
-      "layout": "auto"}
+      // "layout": "auto"
+    }
 
       //HELP: Want the description words and code number to display on hover but not pie
       var piedata = [{
         "labels": s_array.map(row => row.code),
         "values": s_array.map(row => row.count),
         "text": s_array.map(row => row.otu_labels),
-        "textinfo": 'percent',
+        "textinfo": "percent",
         "hoverinfo":("text"+"labels"+"values"+"percent"),
         "type": "pie",
         }];// closes funciton: piedata"
-Plotly.newPlot("bubble",bubbledata,bubblelayout);
-Plotly.newPlot("pie",piedata,pielayout);
+    // Print the plots to the screen      
+    Plotly.newPlot("bubble",bubbledata,bubblelayout);
+    Plotly.newPlot("pie",piedata,pielayout);
   });// closes funciton: fetch
 } // closes function: buildCharts
 
@@ -119,14 +120,14 @@ function init() {
     const firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample); //comment this out when just working on buildMetadata
-  });
-}
+  }); //Close 
+} // Close funtctin init
 
 function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildCharts(newSample); //comment this out when just working on buildMetadata
   buildMetadata(newSample);
-}
+} // Close optionChanged funtion
 
 //Initialize the dashboard
 init();
